@@ -20,7 +20,7 @@ public class Main {
 			lista.add(r.nextInt(100));
 
 		}
-		Integer[] arr = new Integer[0], arr2 = new Integer[0], arr3 = new Integer[0];
+		Integer[] arr = new Integer[0];
 		SumThread t1 = new SumThread((Integer[]) lista.subList(0, 1000).toArray(arr), "Thread1");
 		SumThread t2 = new SumThread((Integer[]) lista.subList(1000, 2000).toArray(arr), "Thread2");
 		SumThread t3 = new SumThread((Integer[]) lista.subList(2000, 3000).toArray(arr), "Thread3");
@@ -38,6 +38,11 @@ public class Main {
 
 			long sum = t1.getSum() + t2.getSum() + t3.getSum();
 			log.info("La somma è pari a: " + sum);
+			long sum2 = 0;
+			for (Integer i : lista) {
+				sum2 += i.longValue();
+			}
+			log.info("risultato: " + (sum == sum2));
 		} catch (InterruptedException | NullPointerException e) {
 			log.error(e.getMessage());
 		}
